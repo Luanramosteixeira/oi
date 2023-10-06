@@ -1,0 +1,10 @@
+* Observar as regras para cada caso
+* Criação do personagem com seus atributos (Habilidade, Energia, Sorte e Provisões)
+* Criação dos combates um contra um
+* Criação dos combates um contra vários
+* Criação de cada monstro com seus devidos atributos (Habilidade e Energia)
+* Criação da opção de fuga durante os combates
+* Criação do uso da sorte
+* Criação do uso das provisões
+* Criação das poções
+* Criação do uso de poções
