@@ -1,0 +1,1 @@
+data = ["Habilidade", "Energia", "Sorte", "Provisões"]
