@@ -60,3 +60,4 @@ def combate_1v1(sorte_jog, habilidade_jog, energia_jog, habilidade_cri, energia_
         elif energia_cri == 0:
             vencedor = "o jogador"
     print(f"O vencedor deste combate foi {vencedor.upper()}.")
+
