@@ -1,7 +1,7 @@
 import random
 import sorte
 
-def combate(sorte_jog, habilidade_jog, energia_jog, habilidade_cri, energia_cri, fuga):
+def combate_1v1(sorte_jog, habilidade_jog, energia_jog, habilidade_cri, energia_cri):
     n_rodada = 0
     while not (energia_jog == 0 or energia_cri == 0):
         n_rodada += 1
@@ -26,16 +26,28 @@ def combate(sorte_jog, habilidade_jog, energia_jog, habilidade_cri, energia_cri,
         
         if forca_ataque_jogador > forca_ataque_criatura:
             print("Você acertou a criatura!")
-            energia_cri -= 2
             sorte_opcao = input("Você deseja usar a sorte? (S/N)\n")
             if sorte_opcao.lower() == "s":
-                sorte.usar_sorte(sorte_jog)
-
+                resultado_sorte = sorte.usar_sorte(sorte_jog)
+                if resultado_sorte == True:
+                    energia_cri -=4
+                else:
+                    energia_cri -=1
+            else:
+                energia_cri -= 2
             print("-"*50)
         elif forca_ataque_jogador < forca_ataque_criatura:
             print("A criatura te acertou!")
+            sorte_opcao = input("Você deseja usar a sorte? (S/N)\n")
+            if sorte_opcao.lower() == "s":
+                resultado_sorte = sorte.usar_sorte(sorte_jog)
+                if resultado_sorte == True:
+                    energia_jog -= 1
+                else:
+                    energia_jog -=3
+            else:
+                energia_jog -= 2
             print("-"*50)
-            energia_jog -= 2
         else:
             print("Ninguém se feriu!")
             print("-"*50)
