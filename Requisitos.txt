@@ -10,4 +10,4 @@
 * Criação do uso de poções
 * Exibição de cada etapa da história
 * Exibição contínua em cada etapa dos níveis dos atribuitos do personagem
-* Exibição contínua em cada etapa do inventário do personagem 
+* Exibição contínua em cada etapa do inventário do personagem

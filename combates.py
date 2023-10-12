@@ -29,7 +29,7 @@ def combate_1v1(sorte_jog, habilidade_jog, energia_jog, habilidade_cri, energia_
             sorte_opcao = input("Você deseja usar a sorte? (S/N)\n")
             if sorte_opcao.lower() == "s":
                 sorte_jog -= 1
-                resultado_sorte = sorte.usar_sorte(sorte_jog)
+                resultado_sorte = sorte.usarSorte(sorte_jog)
                 if resultado_sorte == True:
                     energia_cri -=4
                 else:
@@ -42,7 +42,7 @@ def combate_1v1(sorte_jog, habilidade_jog, energia_jog, habilidade_cri, energia_
             sorte_opcao = input("Você deseja usar a sorte? (S/N)\n")
             if sorte_opcao.lower() == "s":
                 sorte_jog -= 1
-                resultado_sorte = sorte.usar_sorte(sorte_jog)
+                resultado_sorte = sorte.usarSorte(sorte_jog)
                 if resultado_sorte == True:
                     energia_jog -= 1
                 else:
