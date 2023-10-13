@@ -1,15 +1,13 @@
-import combates
-
 def s1():
 	print('''O clamor dos espectadores excitados some gradualmente atrás de você, que se aventura cada vez mais fundo na penumbra do túnel da caverna.
 
-	Grandes cristais pendem do teto do túnel a intervalos de 20 metros, irradiando uma luz suave, apenas suficiente para que se veja por onde anda. À medida que seus olhos vão pouco a pouco se acostumando à quase escuridão, você começa a ver movimentos à sua volta. Aranhas e besouros sobem e descem pelas paredes entalhadas, desaparecendo em frestas e gretas ao sentir sua aproximação; ratazanas e ratos correm pelo chão à sua frente. Pingos de água caem em pequenas poças com um sinistro som gotejante que ecoa pelo túnel. O ar é frio, úmido e pesado. Depois de caminhar lentamente pelo túnel por uns cinco minutos, você chega a uma mesa de pedra encostada contra a parede à sua esquerda. Nela há seis caixas, uma das quais tem o seu nome pintado na tampa. Se você quiser abrir a caixa, vá para 270. Se preferir continuar caminhando para o norte, vá para 66.''')
+Grandes cristais pendem do teto do túnel a intervalos de 20 metros, irradiando uma luz suave, apenas suficiente para que se veja por onde anda. À medida que seus olhos vão pouco a pouco se acostumando à quase escuridão, você começa a ver movimentos à sua volta. Aranhas e besouros sobem e descem pelas paredes entalhadas, desaparecendo em frestas e gretas ao sentir sua aproximação; ratazanas e ratos correm pelo chão à sua frente. Pingos de água caem em pequenas poças com um sinistro som gotejante que ecoa pelo túnel. O ar é frio, úmido e pesado. Depois de caminhar lentamente pelo túnel por uns cinco minutos, você chega a uma mesa de pedra encostada contra a parede à sua esquerda. Nela há seis caixas, uma das quais tem o seu nome pintado na tampa. Se você quiser abrir a caixa, vá para 270. Se preferir continuar caminhando para o norte, vá para 66.''')
 
 	escolha = int(input('Qual a sua escolha?'))
 	if escolha == X:
-		s270()
+		sX()
 	elif escolha == Y:
-		s66()
+		sY()
 
 def s2():
 	print('''O Escorpião consegue prendê-lo nas garras por tempo suficiente para mover a cauda segmentada para frente, por sobre a cabeça, e cravar em você o ferrão venenoso. O efeito é fatal, e você desaba no chão da Arena da Morte, imaginando se Throm conseguirá vencer.''')
@@ -149,13 +147,13 @@ def s15():
 def s16():
 	print('''Você só teve tempo de ouvir o Gnomo dizer: "Três crânios", antes que um raio branco de energia disparasse da fechadura e o atingisse no peito, derrubando-o inconsciente. Jogue um dado, some 1 ao número obtido e reduza este total da sua ENERGIA. Se você ainda estiver vivo, recupera a consciência e o Gnomo manda que tente de novo. Você escolheu as gemas erradas da outra vez; portanto, não tentará aquela combinação novamente.
 
-	A	B	C	
-	Esmeralda	Diamante	Safira	Fique em 16
-	Diamante	Safira	Esmeralda	Vá para 392
-	Safira	Esmeralda	Diamante	Vá para 177
-	Esmeralda	Safira	Diamante	Vá para 287
-	Diamante	Esmeralda	Safira	Vá para 132
-	Safira	Diamante	Esmeralda	Vá para 249''')
+A	B	C	
+Esmeralda	Diamante	Safira	Fique em 16
+Diamante	Safira	Esmeralda	Vá para 392
+Safira	Esmeralda	Diamante	Vá para 177
+Esmeralda	Safira	Diamante	Vá para 287
+Diamante	Esmeralda	Safira	Vá para 132
+Safira	Diamante	Esmeralda	Vá para 249''')
 
 	escolha = int(input('Qual a sua escolha?'))
 	if escolha == X:
@@ -641,10 +639,10 @@ def s66():
 293.	Se preferir ir para o leste, vá para 119.''')
 
 	escolha = int(input('Qual a sua escolha?'))
-	if escolha == 293:
-		s293()
-	elif escolha == 119:
-		s119()
+	if escolha == X:
+		sX()
+	elif escolha == Y:
+		sY()
 
 def s67():
 	print('''Você se agarra a um dos pilares submersos da ponte e gruda nele, prendendo a respiração. Enquanto isso, os Trogloditas chegam à margem e concluem que você deve ter sido arrastado rio abaixo para morte certa, já que o rio desaparece nas profundezas da montanha. A essa altura, seus pulmões estão estourando de falta de ar. Teste sua Sorte outra vez. Se você tiver sorte, vá para 146. Se não tiver sorte, vá para 219.''')
@@ -1267,10 +1265,13 @@ def s130():
 Primeiro HOBGOBLIN	7	5
 Segundo HOBGOBLIN	6	5
 
-Se você vencer, volte para 9.''')
+Se você vencer, volte para 9.	6	5''')
 
-	if combates.combate_1v1() == True:
-		s9()
+	escolha = int(input('Qual a sua escolha?'))
+	if escolha == X:
+		sX()
+	elif escolha == Y:
+		sY()
 
 def s131():
 	print('''Os dardos da besta voam por cima de sua cabeça e se cravam na parede; felizmente, você ainda está agachado. Agora que a armadilha já disparou, você pode sair do aposento pela mesma porta pela qual entrou. De volta no túnel, você segue para o oeste. Volte para 74.''')
@@ -2652,8 +2653,11 @@ def s269():
 def s270():
 	print('''A tampa da caixa sai facilmente. Dentro, você acha duas Peças de Ouro e um bilhete, escrito num pequeno pedaço de pergaminho, endereçado a você. Depois de colocar o ouro no bolso, você lê a mensagem: Muito bem. Pelo menos você tem o bom senso de parar e tirar proveito da ajuda simbólica que lhe é dada. Agora, posso avisá-lo da necessidade de encontrar e usar diversos itens, se espera sair-se bem no meu Calabouço da Morte. Assinado “Sukumvit.” Guardando de cor o aviso do bilhete, você o rasga em pequenos pedaços e continua para o norte pelo túnel. Volte para 66.''')
 
-	escolha = int(input('Digite qualquer tecla para voltar'))
-	s66()
+	escolha = int(input('Qual a sua escolha?'))
+	if escolha == X:
+		sX()
+	elif escolha == Y:
+		sY()
 
 def s271():
 	print('''Quando você está prestes a soltar o escudo e atirá-lo por cima do poço, ele escorrega de seus dedos e rola pelo chão. Você não consegue apanhá-lo antes que ele ultrapasse a borda, caindo ruidosamente, de lado, no fundo. A perda do escudo reduz-lhe a capacidade - você perde 1 ponto de HABILIDADE. Amaldiçoando sua própria falta de jeito, você dá um passo à frente, salta por sobre o poço e cai em segurança do outro lado. Você não perde tempo e se dirige para o leste. Volte para 237.''')
@@ -3921,3 +3925,4 @@ def s400():
 		sX()
 	elif escolha == Y:
 		sY()
+
