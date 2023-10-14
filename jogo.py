@@ -40,8 +40,9 @@ def jogar():
     print("O\n cavaleiro é o primeiro. Ele saúda a multidão antes de desaparecer no túnel; meia hora depois é seguido pela mulher-elfo. Em seguida, vai um dos bárbaros; depois, o assassino negro. Agora é a sua vez de saudar a multidão. Segurando o lenço roxo bem alto, você enche os pulmões de ar fresco e puro uma última vez antes de se virar para passar entre os pilares de pedra e penetrar no labirinto do poderoso Barão Sukumvit, a fim de enfrentar perigos desconhecidos na 'Caminhada' pelo Calabouço da Morte.\n")
 
     continuar = input("\nDigite qualquer tecla para continuar\n")
+    
     conjuntoSituacoes.s1()
-
+jogar()
 print("Bem-vindo ao Calabouço da Morte.\n")
 comecar = input("Digite S para começar o jogo: ")
 if comecar.lower() == "s":

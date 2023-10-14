@@ -4,13 +4,12 @@ def s1():
 	print('''O clamor dos espectadores excitados some gradualmente atrás de você, que se aventura cada vez mais fundo na penumbra do túnel da caverna.
 
 	Grandes cristais pendem do teto do túnel a intervalos de 20 metros, irradiando uma luz suave, apenas suficiente para que se veja por onde anda. À medida que seus olhos vão pouco a pouco se acostumando à quase escuridão, você começa a ver movimentos à sua volta. Aranhas e besouros sobem e descem pelas paredes entalhadas, desaparecendo em frestas e gretas ao sentir sua aproximação; ratazanas e ratos correm pelo chão à sua frente. Pingos de água caem em pequenas poças com um sinistro som gotejante que ecoa pelo túnel. O ar é frio, úmido e pesado. Depois de caminhar lentamente pelo túnel por uns cinco minutos, você chega a uma mesa de pedra encostada contra a parede à sua esquerda. Nela há seis caixas, uma das quais tem o seu nome pintado na tampa. Se você quiser abrir a caixa, vá para 270. Se preferir continuar caminhando para o norte, vá para 66.''')
-
+	
 	escolha = int(input('Qual a sua escolha?'))
-	if escolha == X:
+	if escolha == 270:
 		s270()
-	elif escolha == Y:
+	elif escolha == 66:
 		s66()
-
 def s2():
 	print('''O Escorpião consegue prendê-lo nas garras por tempo suficiente para mover a cauda segmentada para frente, por sobre a cabeça, e cravar em você o ferrão venenoso. O efeito é fatal, e você desaba no chão da Arena da Morte, imaginando se Throm conseguirá vencer.''')
 
@@ -1338,10 +1337,10 @@ def s137():
 	print('''Caminhando pelo túnel, você se surpreende com um grande sino de ferro pendurado no teto. Se quiser tocar o sino, vá para 220. Se preferir contorná-lo e prosseguir para o oeste, vá para 362.''')
 
 	escolha = int(input('Qual a sua escolha?'))
-	if escolha == X:
-		sX()
-	elif escolha == Y:
-		sY()
+	if escolha == 220:
+		s220()
+	elif escolha == 362:
+		s362()
 
 def s138():
 	print('''As páginas do livro estão unidas com lacre, mas um pequeno orifício foi cortado no meio delas, de tamanho suficiente para conter uma pequena garrafa arrolhada, na qual há um líquido de cor clara. Você mostra isso a Throm, que levanta a mão, indicando não querer que você sequer chegue perto dele com aquilo; a desconfiança que ele sente em relação às coisas desconhecidas fica evidente. Você:
@@ -2599,10 +2598,12 @@ Vai atacá-los com sua espada?	Volte para 51
 Tentará passar sem ser percebido?	Vá para 355''')
 
 	escolha = int(input('Qual a sua escolha?'))
-	if escolha == X:
-		sX()
-	elif escolha == Y:
-		sY()
+	if escolha == 130:
+		s130()
+	elif escolha == 51:
+		s51()
+	else:
+		s355()
 
 def s265():
 	print('''Você esfrega seu anel mágico e deseja que o Demônio do Espelho seja transportado de volta ao próprio mundo e nunca mais retome. Ainda avançando na sua direção, o ser começa a se esvair e desaparece aos poucos. Por fim, ele some completamente, e você pode continuar sua jornada para o norte. Volte para 122.''')
@@ -2871,10 +2872,10 @@ def s293():
 	print('''Seguindo os três pares de pegadas molhadas pela passagem oeste do túnel, você logo chega a uma encruzilhada. Se quiser continuar para o oeste, seguindo dois pares de pegadas, volte para 137. Se quiser se dirigir para o norte, seguindo o terceiro par de pegadas, vá para 387.''')
 
 	escolha = int(input('Qual a sua escolha?'))
-	if escolha == X:
-		sX()
-	elif escolha == Y:
-		sY()
+	if escolha == 137:
+		s137()
+	elif escolha == 387:
+		s387()
 
 def s294():
 	print('''Você puxa o punhal do cinto com a mão livre e golpeia a língua da Besta Sangrenta. A fera urra de dor e rola para a frente, tanto quanto consegue, para tentar abocanhá-lo com as mandíbulas ensanguentadas. Do chão, você tem que lutar contra a fera como punhal. Reduza sua HABILIDADE em 2 pontos durante este combate, pois não está lutando com sua espada.
@@ -3544,11 +3545,9 @@ def s361():
 def s362():
 	print('''O túnel dá uma guinada acentuada para a direita e continua para o norte até onde a vista alcança. A distância, você ouve uma tremenda comoção: grunhidos, rosnados, uivos. Você desembainha a espada e parte na direção do tumulto. Volte para 264.''')
 
-	escolha = int(input('Qual a sua escolha?'))
-	if escolha == X:
-		sX()
-	elif escolha == Y:
-		sY()
+	escolha = int(input('Digite qualquer tecla'))
+	if escolha:
+		s264()
 
 def s363():
 	print('''A comida e a bebida são excelentes, e você se sente muito melhor. Acrescente 2 pontos de ENERGIA. Plenamente satisfeito, você senta e espera a volta do Anão. Volte para 302.''')
