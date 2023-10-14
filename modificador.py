@@ -7,10 +7,13 @@ with open("textoSituacoes.txt", "r", encoding="utf=8") as arquivo:
 for i in range(len(conjuntoSituacoes)):
     situacaoAtual = conjuntoSituacoes[i].strip()
 
-    situacaoAtual = f"def s{i+1}():\n" + "\tprint('''" + situacaoAtual + "''')\n\n"
+    situacaoAtual = f"def s{i+1}(jogador):\n" + "\tprint('''" + situacaoAtual + "''')\n\n"
 
-    if "vá para" or "Vá para" in situacaoAtual:
+    if ("vá para" or "Vá para") in situacaoAtual:
         situacaoAtual = situacaoAtual + f"\tescolha = int(input('Qual a sua escolha?'))\n\tif escolha == X:\n\t\tsX()\n\telif escolha == Y:\n\t\tsY()\n\n"
+
+    if ("HABILIDADE" and "ENERGIA") in situacaoAtual:
+        situacaoAtual = situacaoAtual + f"\tiniciarCombate = input('Digite C para começar o combate: ')\n\tif iniciarCombate.lower() == 'c':\n\t\tcombates.combate_1v1()\n\n"
 
     conjuntoSituacoes[i] = situacaoAtual
 

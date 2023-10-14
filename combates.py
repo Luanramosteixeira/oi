@@ -64,6 +64,3 @@ def combate_1v1(sorte_jog, habilidade_jog, energia_jog, habilidade_cri, energia_
     print(f"O vencedor deste combate foi {vencedor.upper()}.")
 
     return venceu
-
-if combate_1v1(6, 10, 12, 9, 8, False) == True:
-    print("É VERDADE MANO")

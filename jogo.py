@@ -1,6 +1,13 @@
 import conjuntoSituacoes
+import criarJogador
 
 def jogar():
+    criandoJogador = input("\nDigite C para criar o seu personagem: ")
+    if criandoJogador.lower() == "c":
+        print("\nOs atributos do seu personagem são estes:\n")
+        jogador = criarJogador.criar()
+        print("\n"+"-"*75)
+
     print("\nFang era uma cidade pequena e comum na província setentrional de Chiang Mai. Situada às margens do rio Kok, constituía-se num ponto de parada conveniente para os comerciantes e passageiros que se deslocavam pelo rio durante a maior parte do ano. Umas poucas barcaças, jangadas e, às vezes, um grande barco a vela podiam ser encontrados no atracadouro de Fang. Mas tudo isso foi há muito tempo, antes da criação da Prova dos Campeões. Agora, uma vez por ano, o rio fica apinhado de barcos, trazendo as pessoas que chegam de centenas de quilômetros ao redor, na esperança de testemunhara quebra de uma antiga tradição em Fang e ver alguém vitorioso na Prova dos Campeões.\n")
 
     continuar = input("\nDigite qualquer tecla para continuar\n")
@@ -40,9 +47,9 @@ def jogar():
     print("O\n cavaleiro é o primeiro. Ele saúda a multidão antes de desaparecer no túnel; meia hora depois é seguido pela mulher-elfo. Em seguida, vai um dos bárbaros; depois, o assassino negro. Agora é a sua vez de saudar a multidão. Segurando o lenço roxo bem alto, você enche os pulmões de ar fresco e puro uma última vez antes de se virar para passar entre os pilares de pedra e penetrar no labirinto do poderoso Barão Sukumvit, a fim de enfrentar perigos desconhecidos na 'Caminhada' pelo Calabouço da Morte.\n")
 
     continuar = input("\nDigite qualquer tecla para continuar\n")
-    conjuntoSituacoes.s1()
+    conjuntoSituacoes.s1(jogador)
 
 print("Bem-vindo ao Calabouço da Morte.\n")
-comecar = input("Digite S para começar o jogo: ")
+comecar = input("Digite S para começar: ")
 if comecar.lower() == "s":
     jogar()
