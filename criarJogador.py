@@ -1,6 +1,5 @@
 import json
 import criarAtributos
-
 def criar():
     jogador = dict()
     with open("jogador.json", "r", encoding='utf-8') as arquivo:
@@ -10,7 +9,7 @@ def criar():
             case 0: jogador['habilidade'] = criarAtributos.habilidade()
             case 1: jogador['energia'] = criarAtributos.energia()
             case 2: jogador['sorte'] = criarAtributos.sorte()
-            case 3: jogador['provisões'] = 10
+            case 3: jogador['provisoes'] = 10
     print(f"Habilidade: {jogador['habilidade']}")
     print(f"Energia: {jogador['energia']}")
     print(f"Sorte: {jogador['sorte']}")

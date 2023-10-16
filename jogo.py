@@ -1,11 +1,13 @@
 import conjuntoSituacoes
 import criarJogador
-
+import json
 def jogar():
     criandoJogador = input("\nDigite C para criar o seu personagem: ")
     if criandoJogador.lower() == "c":
         print("\nOs atributos do seu personagem são estes:\n")
         jogador = criarJogador.criar()
+        with open("jogadorInicial.json", "w", encoding='utf-8') as arquivo:
+            arquivo.write(json.dumps(jogador))
         print("\n"+"-"*75)
     
     print("\nFang era uma cidade pequena e comum na província setentrional de Chiang Mai. Situada às margens do rio Kok, constituía-se num ponto de parada conveniente para os comerciantes e passageiros que se deslocavam pelo rio durante a maior parte do ano. Umas poucas barcaças, jangadas e, às vezes, um grande barco a vela podiam ser encontrados no atracadouro de Fang. Mas tudo isso foi há muito tempo, antes da criação da Prova dos Campeões. Agora, uma vez por ano, o rio fica apinhado de barcos, trazendo as pessoas que chegam de centenas de quilômetros ao redor, na esperança de testemunhara quebra de uma antiga tradição em Fang e ver alguém vitorioso na Prova dos Campeões.\n")

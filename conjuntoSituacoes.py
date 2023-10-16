@@ -5,6 +5,12 @@ import sorte
 import json
 
 def s1(jogador):
+	print("PERSONAGEM ATUAL:")
+	print("Habilidade:", jogador["habilidade"])
+	print("Energia:", jogador["energia"])
+	print("Sorte:", jogador["sorte"])
+	print("Provisões:", jogador["provisoes"])
+	print("*"*75)
 	print('''O clamor dos espectadores excitados some gradualmente atrás de você, que se aventura cada vez mais fundo na penumbra do túnel da caverna.
 
 Grandes cristais pendem do teto do túnel a intervalos de 20 metros, irradiando uma luz suave, apenas suficiente para que se veja por onde anda. À medida que seus olhos vão pouco a pouco se acostumando à quase escuridão, você começa a ver movimentos à sua volta. Aranhas e besouros sobem e descem pelas paredes entalhadas, desaparecendo em frestas e gretas ao sentir sua aproximação; ratazanas e ratos correm pelo chão à sua frente. Pingos de água caem em pequenas poças com um sinistro som gotejante que ecoa pelo túnel. O ar é frio, úmido e pesado. Depois de caminhar lentamente pelo túnel por uns cinco minutos, você chega a uma mesa de pedra encostada contra a parede à sua esquerda. Nela há seis caixas, uma das quais tem o seu nome pintado na tampa. Se você quiser abrir a caixa, vá para 270. Se preferir continuar caminhando para o norte, vá para 66.''')
@@ -16,60 +22,125 @@ Grandes cristais pendem do teto do túnel a intervalos de 20 metros, irradiando 
 		s66(jogador)
 
 def s2(jogador):
-	print('''O Escorpião consegue prendê-lo nas garras por tempo suficiente para mover a cauda segmentada para frente, por sobre a cabeça, e cravar em você o ferrão venenoso. O efeito é fatal, e você desaba no chão da Arena da Morte, imaginando se Throm conseguirá vencer.''')
+	print("PERSONAGEM ATUAL:")
+	print("Habilidade:", jogador["habilidade"])
+	print("Energia:", jogador["energia"])
+	print("Sorte:", jogador["sorte"])
+	print("Provisões:", jogador["provisoes"])
+	print("*"*75)
 
+	print('''O Escorpião consegue prendê-lo nas garras por tempo suficiente para mover a cauda segmentada para frente, por sobre a cabeça, e cravar em você o ferrão venenoso. O efeito é fatal, e você desaba no chão da Arena da Morte, imaginando se Throm conseguirá vencer.''')
+	jogador["energia"] = 0
+	if jogador["energia"] == 0:
+		print("Você morreu")
 def s3(jogador):
+	print("PERSONAGEM ATUAL:")
+	print("Habilidade:", jogador["habilidade"])
+	print("Energia:", jogador["energia"])
+	print("Sorte:", jogador["sorte"])
+	print("Provisões:", jogador["provisoes"])
+	print("*"*75)
+
 	print('''O Gnomo sacode a cabeça e diz: "Temo que você não tenha passado pela Prova dos Campeões. Os segredos do Calabouço da Morte do Barão Sukumvit ficarão guardados por mais um ano, pois você não terá permissão para sair daqui. Você foi indicado para ser meu servo pelo resto dos seus dias; preparará e modificará o subterrâneo para competidores futuros. Talvez em outra vida você tenha sucesso..."''')
+	print("Você perdeu")
 
 def s4(jogador):
+	print("PERSONAGEM ATUAL:")
+	print("Habilidade:", 0)
+	print("Energia:", 0)
+	print("Sorte:", 0)
+	print("Provisões:", 0)
+	print("*"*75)
 	print('''Na escuridão total, você não vê a curva do cano para baixo. Escorrega e, incapaz de se segurar no cano cheio de limo, desliza pela borda. Seus gritos ecoam pelo tubo, enquanto você cai 50 metros até o fundo. Você fracassou na Prova dos Campeões.''')
+	print("Você morreu")
 
 def s5(jogador):
-	print('''Você se arrasta pelo chão e se vê no covil de uma tribo de TROGLODITAS. Ao engatinhar passando por eles, sua bainha bate em uma pedra. Teste sua Sorte. Se você tiver sorte, vá para
-185. Se você não tiver sorte, vá para 395.''')
+	print("PERSONAGEM ATUAL:")
+	print("Habilidade:", jogador["habilidade"])
+	print("Energia:", jogador["energia"])
+	print("Sorte:", jogador["sorte"])
+	print("Provisões:", jogador["provisoes"])
+	print("*"*75)
 
-	escolha = int(input('Qual a sua escolha?'))
-	if escolha == X:
-		sX()
-	elif escolha == Y:
-		sY()
+	print('''Você se arrasta pelo chão e se vê no covil de uma tribo de TROGLODITAS. Ao engatinhar passando por eles, sua bainha bate em uma pedra. Teste sua Sorte. Se você tiver sorte, vá para
+	185. Se você não tiver sorte, vá para 395.''')
+	sorte = sorte.usarSorte(jogador["sorte"])
+	if sorte == True:
+		s185(jogador)
+	elif sorte == False:
+		s395(jogador)
 
 def s6(jogador):
+	print("PERSONAGEM ATUAL:")
+	print("Habilidade:", jogador["habilidade"])
+	print("Energia:", jogador["energia"])
+	print("Sorte:", jogador["sorte"])
+	print("Provisões:", jogador["provisoes"])
+	print("*"*75)
+
 	print('''Sabendo que o Mantécora disparará os espinhos da cauda, Você corre para se proteger atrás de um dos pilares. Antes que consiga chegar lá, uma saraivada de espinhos voa pelo ar, e um deles penetra-lhe o braço. Você perde 2 pontos de ENERGIA. Se ainda estiver vivo, não perca tempo e ataque o Mantécora com espada, antes que ele possa disparar mais espinhos.
-
-MANTÉCORA	HABILIDADE 11	ENERGIA 11
-
-Se você vencer, vá para 364.''')
-
-	escolha = int(input('Qual a sua escolha?'))
-	if escolha == X:
-		sX()
-	elif escolha == Y:
-		sY()
-
+	MANTÉCORA	HABILIDADE 11	ENERGIA 11
+	Se você vencer, vá para 364.''')
+	jogador["energia"] - 2
 	iniciarCombate = input('Digite C para começar o combate: ')
 	if iniciarCombate.lower() == 'c':
-		combates.combate_1v1()
+		if jogador["energia"] > 0:
+			mantegora = combates.combate_1v1(jogador["sorte"], jogador["habilidade"], jogador["energia"], 11, 11)
+			if mantegora == True:
+				funcoesFolhaDeAventura.adicionar_monstro("mantegora", 11, 11)
+				s384(jogador)
+			else:
+				print("você morreu")
+		else:
+			print("Você morreu")
 
 def s7(jogador):
+	print("PERSONAGEM ATUAL:")
+	print("Habilidade:", jogador["habilidade"])
+	print("Energia:", jogador["energia"])
+	print("Sorte:", jogador["sorte"])
+	print("Provisões:", jogador["provisoes"])
+	print("*"*75)
 	print('''Antes que você tenha tempo de chegar a uma porta, o rochedo já está sobre você, que grita de dor e medo quando ele o esmaga no chão. Sua aventura termina aqui.''')
 
 def s8(jogador):
+	print("PERSONAGEM ATUAL:")
+	print("Habilidade:", jogador["habilidade"])
+	print("Energia:", jogador["energia"])
+	print("Sorte:", jogador["sorte"])
+	print("Provisões:", jogador["provisoes"])
+	print("*"*75)
 	print('''O Demônio do Espelho agarra-o pelo pulso. Imediatamente, ele começa a puxá-lo na direção do espelho. A força dele é incrível, e, apesar de todos os seus esforços, você não consegue evitar que o arraste progressivamente na direção do espelho. Quando ele toca o espelho, parece desaparecer diretamente através dele. Horrorizado, você vê seu próprio braço desaparecer, seguido pelo resto do corpo. Você está agora em um mundo de espelhos de outra dimensão, do qual jamais retornará.''')
+	print("fim")
 
 def s9(jogador):
+	print("PERSONAGEM ATUAL:")
+	print("Habilidade:", jogador["habilidade"])
+	print("Energia:", jogador["energia"])
+	print("Sorte:", jogador["sorte"])
+	print("Provisões:", jogador["provisoes"])
+	print("*"*75)
 	print('''Os Hobgoblins não têm nada que lhe seja útil, por isso você resolve abrir o saco no chão. Dentro, acha uma moringa de barro arrolhada. Você a desarrolha e cheira o líquido que contém. O odor é penetrante e acre. Se quiser beber um pouco do líquido, vá para 158. Se quiser mergulhar um pedaço de pano nele, vá para 375.''')
 
 	escolha = int(input('Qual a sua escolha?'))
-	if escolha == X:
-		sX()
-	elif escolha == Y:
-		sY()
+	if escolha == 158:
+		s158(jogador)
+	elif escolha == 375:
+		s375(jogador)
 
 def s10(jogador):
+	print("PERSONAGEM ATUAL:")
+	print("Habilidade:", jogador["habilidade"])
+	print("Energia:", jogador["energia"])
+	print("Sorte:", jogador["sorte"])
+	print("Provisões:", jogador["provisoes"])
+	print("*"*75)
 	print('''Ainda correndo o mais rápido possível, você enfia a mão na mochila e tira o tubo de madeira. Seu plano é ficar sob a água, respirando pelo tubo. Com sorte, os Trogloditas pensarão que você será arrastado até a morte rio abaixo, pois a torrente desaparece nas profundezas da montanha. Você segura o tubo entre os dentes e mergulha na água. Segurando-se em um dos pilares da ponte embaixo d'água, você fica absolutamente imóvel por 10 minutos. Quando finalmente acha que os Trogloditas foram embora, você sobe à superfície e olha em volta. Não há ninguém à vista, e você sai do rio e atravessa a ponte para a margem norte. Quaisquer Provisões restantes que você possa ter estão agora encharcadas e imprestáveis. Risque-as de sua Folha de Aventuras. Você segue pela vasta caverna até que, finalmente, vê um túnel na parede do outro lado. Você caminha até uma pesada porta de madeira, que está trancada. Se você tiver uma chave de ferro, vá para 86. Se não tiver, vá para 276.''')
-
+	jogador["provisoes"] = 0
+	with open("inventario.json", "r", encoding='utf-8') as arquivo:
+		json.loads(arquivo.read())
 	escolha = int(input('Qual a sua escolha?'))
+	
 	if escolha == X:
 		sX()
 	elif escolha == Y:
