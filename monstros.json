@@ -1,0 +1,12 @@
+[
+    {
+        "nome": "Orca",
+        "habilidade": 5,
+        "energia": 5
+    },
+    {
+        "nome": "Orca",
+        "habilidade": 6,
+        "energia": 4
+    }
+]

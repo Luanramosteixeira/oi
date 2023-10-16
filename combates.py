@@ -1,7 +1,7 @@
 import random
 import sorte
 
-def combate_1v1(sorte_jog, habilidade_jog, energia_jog, habilidade_cri, energia_cri, fuga):
+def combate_1v1(sorte_jog, habilidade_jog, energia_jog, habilidade_cri, energia_cri, fuga=None):
     n_rodada = 0
     while not (energia_jog == 0 or energia_cri == 0):
         n_rodada += 1

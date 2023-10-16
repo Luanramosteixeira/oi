@@ -1,13 +1,19 @@
+import random
+import combates
+import funcoesFolhaDeAventura
+import sorte
+import json
+
 def s1(jogador):
 	print('''O clamor dos espectadores excitados some gradualmente atrás de você, que se aventura cada vez mais fundo na penumbra do túnel da caverna.
 
 Grandes cristais pendem do teto do túnel a intervalos de 20 metros, irradiando uma luz suave, apenas suficiente para que se veja por onde anda. À medida que seus olhos vão pouco a pouco se acostumando à quase escuridão, você começa a ver movimentos à sua volta. Aranhas e besouros sobem e descem pelas paredes entalhadas, desaparecendo em frestas e gretas ao sentir sua aproximação; ratazanas e ratos correm pelo chão à sua frente. Pingos de água caem em pequenas poças com um sinistro som gotejante que ecoa pelo túnel. O ar é frio, úmido e pesado. Depois de caminhar lentamente pelo túnel por uns cinco minutos, você chega a uma mesa de pedra encostada contra a parede à sua esquerda. Nela há seis caixas, uma das quais tem o seu nome pintado na tampa. Se você quiser abrir a caixa, vá para 270. Se preferir continuar caminhando para o norte, vá para 66.''')
 
 	escolha = int(input('Qual a sua escolha?'))
-	if escolha == X:
-		sX()
-	elif escolha == Y:
-		sY()
+	if escolha == 270:
+		s270(jogador)
+	elif escolha == 66:
+		s66(jogador)
 
 def s2(jogador):
 	print('''O Escorpião consegue prendê-lo nas garras por tempo suficiente para mover a cauda segmentada para frente, por sobre a cabeça, e cravar em você o ferrão venenoso. O efeito é fatal, e você desaba no chão da Arena da Morte, imaginando se Throm conseguirá vencer.''')
@@ -89,10 +95,10 @@ def s13(jogador):
 	print('''O túnel faz uma curva abrupta para a esquerda e se dirige para o norte, tanto quanto a sua vista alcança. As pegadas que você está seguindo começam a sumir à medida que o túnel vai ficando mais seco. Logo não vê mais o teto gotejante e as poças no chão. Você repara que o ar está se tornando mais quente, e se vê ofegante, embora esteja andando bem devagar. Em uma pequena reentrância da parede da esquerda, você vê um pedaço de bambu na vertical. Levantando-o, repara que ele está cheio de um líquido claro. Sua garganta está dolorosamente seca, e você se sente um pouco tonto por causa do calor no túnel. Se quiser beber o líquido, vá para 141. Se não quiser se arriscar a beber e preferir continuar para o norte, vá para 182.''')
 
 	escolha = int(input('Qual a sua escolha?'))
-	if escolha == X:
-		sX()
-	elif escolha == Y:
-		sY()
+	if escolha == 141:
+		s141(jogador)
+	elif escolha == 182:
+		s182(jogador)
 
 def s14(jogador):
 	print('''O túnel conduz a uma câmara escura, coberta de espessas teias de aranha. Abrindo caminho entre elas, você tropeça em um pequeno cofre de madeira. Se quiser tentar abrir o cofre, vá para 157. Se preferir continuar para o norte, vá para 310.''')
@@ -127,11 +133,11 @@ def s17(jogador):
 def s18(jogador):
 	print('''Para sorte sua, os dentes da naja se cravam na munhequeira de couro que você está usando. A serpente se enrosca de novo bem depressa, pronta para lançar outro ataque, quando o Anão ordena que você faça mais uma tentativa. Jogue dois dados. Se o total for igual ou menor que sua HABILIDADE, vá para 55. Se o total for maior que sua HABILIDADE, vá para 202''')
 
-	escolha = int(input('Qual a sua escolha?'))
-	if escolha == X:
-		sX()
-	elif escolha == Y:
-		sY()
+	soma = random.randint(1, 6) + random.randint(1, 6)
+	if soma <= jogador["habilidade"]:
+		s55(jogador)
+	elif soma > jogador["habilidade"]:
+		s202(jogador)
 
 def s19(jogador):
 	print('''Você não consegue resistir ao olhar hipnótico da Medusa quando seus olhares se encontram. Sente os membros enrijecerem e entra em pânico, indefeso, enquanto se transforma em pedra. Sua aventura termina aqui.''')
@@ -171,6 +177,9 @@ def s24(jogador):
 
 def s25(jogador):
 	print('''Embora a temperatura no túnel esteja mais alta do que você conseguiria normalmente tolerar, o líquido do bambu mantém-no vivo. Vá para 197.''')
+	escolha = input("Digite qualquer tecla para voltar ao 197")
+	if escolha:
+		s197(jogador)
 
 def s26(jogador):
 	print('''A pílula faz com que você se sinta mole e letárgico. Você perde 2 pontos de HABILIDADE. O Anão diz que agora você pode prosseguir para o segundo estágio do teste. Ele pega uma cesta de vime e lhe diz que ela contém uma serpente. Vira a cesta e a serpente cai no chão. É uma naja, e se ergue no ar, pronta para dar o bote. O Anão diz que pretende testar suas reações. Você deverá agarrar a naja, com as mãos nuas, pelo pescoço, evitando as presas mortais. Você se agacha, tensionando os músculos para o momento decisivo. Jogue dois dados. Se o total for igual ou menor que sua HABILIDADE, vá para 55. Se o total for maior que sua HABILIDADE, vá para 202.''')
@@ -292,23 +301,29 @@ Se você vencer, vá para 163.''')
 def s41(jogador):
 	print('''Você caminha lentamente para a alcova, verificando cuidadosamente o chão para não cair em outras armadilhas ocultas. Você vê que a taça contém um líquido vermelho efervescente. Você:
 
-Beberá o líquido vermelho?	Vá para 98
-Deixará a taça e caminhará de volta para procurar o Bárbaro (se você ainda não
-tiver feito isso)?	Vá para 126
-Deixará a câmara para continuar para o oeste?	Vá para 83''')
+	Beberá o líquido vermelho?	Vá para 98
+	Deixará a taça e caminhará de volta para procurar o Bárbaro (se você ainda não
+	tiver feito isso)?	Vá para 126
+	Deixará a câmara para continuar para o oeste?	Vá para 83''')
+	escolha = int(input("Digite sua escolha: "))
+	if escolha == 98:
+		s98(jogador)
+	elif escolha == 126:
+		s126(jogador)
+	elif escolha == 83:
+		s83(jogador)
 
 def s42(jogador):
 	print('''Os dentes da naja se cravam fundo no seu pulso e você sente o veneno se alastrando pelo corpo. Você perde 5 pontos de ENERGIA. Se você ainda estiver vivo, o Anão não tem pena, e lhe diz para tentar outra vez. Jogue dois dados. Se o total for igual ou menor que sua HABILIDADE, vá para 55. Se o total for maior, vá para 202.''')
-
-	escolha = int(input('Qual a sua escolha?'))
-	if escolha == X:
-		sX()
-	elif escolha == Y:
-		sY()
-
-	iniciarCombate = input('Digite C para começar o combate: ')
-	if iniciarCombate.lower() == 'c':
-		combates.combate_1v1()
+	jogador["energia"] - 5
+	if jogador["energia"] <= 0:
+		print("Você morreu")
+	elif jogador["energia"] > 0:
+		soma = random.randint(1, 6) + random.randint(1, 6)
+		if soma <= jogador["habilidade"]:
+			s55(jogador)
+		elif soma > jogador["habilidade"]:
+			s202(jogador)
 
 def s43(jogador):
 	print('''O túnel vira abruptamente para a direita e continua para o norte, até onde a vista alcança. Há uma porta entreaberta na parede do lado esquerdo. Você ouve alguém gritando por socorro, a voz vindo do outro lado da porta. Se você quiser abrir a porta, vá para 200. Se preferir continuar para o norte, vá para 316.''')
@@ -402,10 +417,10 @@ def s56(jogador):
 	print('''Você vê que a obstrução é causada por um objeto grande e marrom, parecendo um rochedo. Você o toca com a mão e fica surpreso ao descobrir que é macio e esponjoso. Se você quiser tentar subir por cima dele, vá para 373. Se preferir cortá-lo ao meio com sua espada, vá para 215.''')
 
 	escolha = int(input('Qual a sua escolha?'))
-	if escolha == X:
-		sX()
-	elif escolha == Y:
-		sY()
+	if escolha == 373:
+		s373(jogador)
+	elif escolha == 215:
+		s215(jogador)
 
 def s57(jogador):
 	print('''Embora você já tenha examinado a arca cuidadosamente, em busca de quaisquer mecanismos ocultos, não consegue ver a armadilha dentro dela. Ao levantar a tampa, uma bola de ferro pendente de uma corda é lançada para trás, partindo a cápsula de vidro fixada no lado de dentro da tampa. Uma nuvem de gás venenoso é instantaneamente liberado no ar, e você cambaleia, recuando, enquanto tosse e se engasga. Você perde 4 pontos de ENERGIA. Se ainda estiver vivo, vá para 198.''')
@@ -484,13 +499,13 @@ def s65(jogador):
 
 def s66(jogador):
 	print('''Depois de caminhar pelo túnel por alguns minutos, você chega a uma encruzilhada. Uma seta branca pintada na parede aponta para o oeste. No chão, você vê pegadas molhadas, feitas por aqueles que entraram antes de você. É difícil ter certeza, mas parece que três deles seguiram a direção da seta, enquanto um resolveu ir para o leste. Se você quiser ir para o oeste, vá para
-293.	Se preferir ir para o leste, vá para 119.''')
+	293.	Se preferir ir para o leste, vá para 119.''')
 
 	escolha = int(input('Qual a sua escolha?'))
-	if escolha == X:
-		sX()
-	elif escolha == Y:
-		sY()
+	if escolha == 293:
+		s293(jogador)
+	elif escolha == 119:
+		s119(jogador)
 
 def s67(jogador):
 	print('''Você se agarra a um dos pilares submersos da ponte e gruda nele, prendendo a respiração. Enquanto isso, os Trogloditas chegam à margem e concluem que você deve ter sido arrastado rio abaixo para morte certa, já que o rio desaparece nas profundezas da montanha. A essa altura, seus pulmões estão estourando de falta de ar. Teste sua Sorte outra vez. Se você tiver sorte, vá para 146. Se não tiver sorte, vá para 219.''')
@@ -598,11 +613,9 @@ def s83(jogador):
 def s84(jogador):
 	print('''Jogue dois dados. Se o total for maior que 8, vá para 152. Se for 8 ou menos, vá para 121.''')
 
-	escolha = int(input('Qual a sua escolha?'))
-	if escolha == X:
-		sX()
-	elif escolha == Y:
-		sY()
+	somaDados = random.randint(1, 6) + random.randint(1, 6)
+	if somaDados > 8:
+		s152(jogador)
 
 def s85(jogador):
 	print('''Antes que você possa fazer qualquer outra coisa, o velho murmura umas palavras estranhas. Você sente os músculos se enrijecerem e a pele se esticar. Começa a entrar em pânico, mas não há nada que possa fazer para impedir a petrificação do seu corpo. Sua aventura termina aqui.''')
@@ -642,22 +655,23 @@ def s90(jogador):
 
 def s91(jogador):
 	print('''A maça de ferro do Orca atinge-lhe o braço, jogando sua espada no chão. Você terá que lutar com as mãos nuas, o que lhe reduz a HABILIDADE em 4 pontos enquanto durar o combate. Felizmente, o túnel é estreito demais para os dois Orcas atacarem-no ao mesmo tempo. Lute com um de cada vez.
-	HABILIDADE	ENERGIA
-Primeiro ORCA	5	5
-Segundo ORCA 6	4
-
-Se você vencer, vá para 257.''')
-
-	escolha = int(input('Qual a sua escolha?'))
-	if escolha == X:
-		sX()
-	elif escolha == Y:
-		sY()
-
+					HABILIDADE	 ENERGIA
+	Primeiro ORCA		5			5
+	Segundo ORCA 		6			4
+	Se você vencer, vá para 257.''')
 	iniciarCombate = input('Digite C para começar o combate: ')
 	if iniciarCombate.lower() == 'c':
-		combates.combate_1v1()
-
+		primeiraOrca = combates.combate_1v1(jogador["sorte"], jogador["habilidade"], jogador["energia"], 5, 5)
+		if primeiraOrca ==  True:
+			funcoesFolhaDeAventura.adicionar_monstro("Orca", 5, 5)
+			segundaOrca = combates.combate_1v1(jogador["sorte"], jogador["habilidade"], jogador["energia"], 6, 4)
+			if segundaOrca == True:
+				funcoesFolhaDeAventura.adicionar_monstro("Orca", 6,4)
+				s257(jogador)
+			else:
+				print("Você morreu")
+		else:
+			print("Você morreu")
 def s92(jogador):
 	print('''Reunindo todas as suas forças, você desfere um golpe final no Demônio do Espelho com sua espada. Com um som de estourar os tímpanos, abrem-se rachaduras no rosto e membros do monstro. As várias bocas gritam de agonia nos estertores da morte, antes do Demônio se despedaçar completamente numa pilha de minúsculos cacos. Você solta um enorme suspiro de alívio e depois se apressa a seguir em frente. Vá para 122.''')
 
@@ -684,12 +698,13 @@ def s97(jogador):
 
 def s98(jogador):
 	print('''Erguendo a taça, você aciona um mecanismo de mola, e um dardo é disparado da perna da mesa de madeira. Teste sua Sorte. Se você tiver sorte, vá para 105. Se não tiver sorte, vá para 235.''')
-
-	escolha = int(input('Qual a sua escolha?'))
-	if escolha == X:
-		sX()
-	elif escolha == Y:
-		sY()
+	sorte = sorte.usarSorte(jogador["sorte"])
+	with open("inventario.json", "r", encoding='utf-8') as arquivo:
+		inventario = json.loads(arquivo.read())
+	if sorte == True:
+		s105(jogador, inventario)
+	elif sorte == False:
+		s235(jogador)
 
 def s99(jogador):
 	print('''Sorrindo, você diz a Erva que a acha muito parecida com Barriga Azeda. Então, enquanto ela olha com admiração para a pintura, você pega um banco quebrado, aproxima-se silenciosamente por trás dela e golpeia-lhe a cabeça com toda a força. Para seu imenso alívio, Erva cai sem sentidos. Se você quiser revistar-lhe o quarto, vá para 266. Se não, saia pela porta da parede leste. Você se encontrará no final de um túnel. Vá para 305.''')
@@ -728,14 +743,17 @@ def s103(jogador):
 def s104(jogador):
 	print('''Reagindo rapidamente, você consegue saltar por cima da língua estendida e correr para o túnel, deixando a Besta Sangrenta a chafurdar na poça à espera de outra vítima. Vá para 134.''')
 
-def s105(jogador):
-	print('''Seus reflexos são precisos, e você rapidamente pula de lado. O dardo passa assobiando, por pouco não o atingindo, e se choca contra a parede do outro lado. Você vê a taça jogada no chão, e o líquido vermelho escorrendo pela pedra cinzenta como pequenos riachos. Pelo menos a raça pode ser de alguma utilidade, portanto você a põe na mochila. Se você ainda não o tiver feito, poderá caminhar de volta para revistar o Bárbaro - vá para 126. Do contrário, saia da câmara para continuar para o oeste - volte para 83.''')
-
-	escolha = int(input('Qual a sua escolha?'))
-	if escolha == X:
-		sX()
-	elif escolha == Y:
-		sY()
+def s105(jogador, inventario):
+	print('''Seus reflexos são precisos, e você rapidamente pula de lado. O dardo passa assobiando, por pouco não o atingindo, e se choca contra a parede do outro lado. Você vê a taça jogada no chão, e o líquido vermelho escorrendo pela pedra cinzenta como pequenos riachos. Pelo menos a taça pode ser de alguma utilidade, portanto você a põe na mochila. Se você ainda não o tiver feito, poderá caminhar de volta para revistar o Bárbaro - vá para 126. Do contrário, saia da câmara para continuar para o oeste - volte para 83.''')
+	modificador = {
+		"equipamentos":"Taça",
+	}
+	funcoesFolhaDeAventura.atualizar_inventario(modificador)
+	escolha = int(input("Digite sua escolha: "))
+	if escolha == 126:
+		s126(jogador)
+	elif escolha == 83:
+		s83(jogador)
 
 def s106(jogador):
 	print('''Ao apertar o braço da cadeira, você aciona a mola de um painel secreto, que salta no ar. Você encontra um frasco de vidro e lê o rótulo: "Poção da Réplica - uma dose apenas. Este líquido fará com que seu corpo tome a forma de qualquer ser que esteja próximo." Você coloca a estranha poção na mochila e continua para o norte. Vá para 188.''')
@@ -818,10 +836,10 @@ def s119(jogador):
 	print('''Adiante, você pode ver um grande obstáculo no chão do túnel, embora esteja escuro demais para saber exatamente o que é. As pegadas molhadas que você vem seguindo continuam até a obstrução. Se você quiser continuar para o leste, volte para 56. Se preferir voltar para a encruzilhada e seguir para o oeste, vá para 293.''')
 
 	escolha = int(input('Qual a sua escolha?'))
-	if escolha == X:
-		sX()
-	elif escolha == Y:
-		sY()
+	if escolha == 56:
+		s56(jogador)
+	elif escolha == 293:
+		s293(jogador)
 
 def s120(jogador):
 	print('''Jogados num buraco de mais ou menos um metro de profundidade, você vê um gancho de ferro e uma bolsa de couro. Se quiser esticar a mão para apanhá-los, vá para 228. Se preferir ignorar os objetos e continuar para o norte, vá para 292.''')
@@ -883,10 +901,17 @@ def s125(jogador):
 def s126(jogador):
 	print('''A bolsa no cinto do Bárbaro contém apenas uma porção de carne seca de aparência estranha, embrulhada num pano. Você:
 
-Comerá a carne seca?	Vá para 226
-Deixará a carne e caminhará para a alcova
-(se ainda não tiver feito isso)?	Volte para 41
-Deixará a câmara e seguirá para o oeste?	Volte para 83''')
+	Comerá a carne seca?	Vá para 226
+	Deixará a carne e caminhará para a alcova
+	(se ainda não tiver feito isso)?	Volte para 41
+	Deixará a câmara e seguirá para o oeste?	Volte para 83''')
+	escolha = int(input("Digite sua escolha: "))
+	if escolha == 226:
+		s226(jogador)
+	elif escolha == 41:
+		s41(jogador)
+	elif escolha == 83:
+		s83(jogador)
 
 def s127(jogador):
 	print('''A única maneira possível de sair do salão, tanto quanto você pode ver, é usando um escorrega na parede norte. Você resolve arriscar e sobe no escorrega. Desce deslizando suavemente e aterrissa de costas em outro aposento. Volte para 90.''')
@@ -1010,6 +1035,7 @@ def s140(jogador):
 def s141(jogador):
 	print('''O Demônio do Espelho está quase em cima de você quando, reunindo todas as suas forças, você desfere um golpe decisivo contra o espelho com a espada. Jogue dois dados. Se o total for igual ou menor que a sua HABILIDADE, volte para 72. Se o total for maior que a sua HABILIDADE, volte para 96.''')
 
+
 def s142(jogador):
 	print('''Há uma nova ramificação no túnel à sua esquerda, e, à frente, você vê dois corpos estendidos no chão. Você pára e dá uma espiada no novo túnel, mas, não vendo nem portas nem criaturas, resolve seguir por ele. Com a espada na mão, você caminha na direção dos corpos estendidos. Vá para 338.''')
 
@@ -1111,12 +1137,11 @@ Se você vencer, vá para 240.''')
 def s152(jogador):
 	print('''O Anão o cumprimenta por ter adivinhado corretamente. Ele diz que agora você deverá seguir para a segunda fase do teste. Apanhando uma cesta de vime, ele lhe diz que há uma cobra dentro dela. Vira a cesta e a cobra cai ao chão; é uma naja, que se ergue no ar, pronta para o bote. O Anão diz que quer testar suas reações. De mãos vazias, você deverá segurar a naja pelo pescoço, evitando-lhe os dentes mortais. Você se agacha, tensionando os músculos para o momento decisivo. Jogue dois dados. Se o total for igual ou menor que a sua HABILIDADE, volte para 55. Se o total for maior que a sua HABILIDADE, vá para 202.''')
 
-	escolha = int(input('Qual a sua escolha?'))
-	if escolha == X:
-		sX()
-	elif escolha == Y:
-		sY()
-
+	soma = random.randint(1, 6) + random.randint(1,6)
+	if soma <= jogador["habilidade"]:
+		s55(jogador)
+	elif soma > jogador["habilidade"]:
+		s202(jogador)
 def s153(jogador):
 	print('''A porta abre para um pequeno aposento, no qual há um crânio humano cujos olhos são jóias, pousado sobre um pedestal de mármore. Uma bateria de bestas com dardos está fixada à parede da esquerda, e duas pequenas bolas de madeira estão no chão, bem perto da porta. Você:
 
@@ -1139,10 +1164,10 @@ def s156(jogador):
 	print('''A pequena placa desliza e se abre facilmente, e você divisa um aposento com um poço profundo no chão atrás da porta. Na parede do outro lado, há dois ganchos de ferro, num dos quais está pendurado um rolo de corda. Se você quiser abrir a porta, pular por cima do poço e pegar a corda, vá para 208. Se preferir continuar para o norte pelo túnel, vá para 326.''')
 
 	escolha = int(input('Qual a sua escolha?'))
-	if escolha == X:
-		sX()
-	elif escolha == Y:
-		sY()
+	if escolha == 208:
+		s208(jogador)
+	elif escolha == 326:
+		s326(jogador)
 
 def s157(jogador):
 	print('''O pequeno cofre se abre facilmente; dentro, uma bolsa de veludo negro contém uma pérola grande. Some 1 ponto de SORTE. Depois de pôr a pérola no bolso, você avança em meio às teias de aranha. Vá para 310.''')
@@ -1192,10 +1217,10 @@ def s164(jogador):
 	print('''Enquanto você caminha, pingos de água voltam a cair do teto do túnel. Você vê pegadas úmidas, feitas pelas mesmas botas que você havia seguido anteriormente, se dirigindo para o oeste. As pegadas conduzem a uma porta de ferro fechada na parede do lado direito do túnel, mas não parecem continuar a partir dali. Se quiser abrir a porta, vá para 299. Se preferir continuar em frente para o oeste, volte para 83.''')
 
 	escolha = int(input('Qual a sua escolha?'))
-	if escolha == X:
-		sX()
-	elif escolha == Y:
-		sY()
+	if escolha == 299:
+		s299(jogador)
+	elif escolha == 83:
+		s83(jogador)
 
 def s165(jogador):
 	print('''Há uma ranhura no cadeado, na qual você coloca a moeda. Imediatamente, o cadeado se abre, e você consegue desacorrentar as pernas-de-pau. Você as coloca nos ombros e, mais uma vez, parte para o norte. Vá para 234.''')
@@ -1348,10 +1373,10 @@ def s182(jogador):
 	print('''A temperatura continua a subir, e você começa a pingar suor. Adiante, o calor se intensifica. Parece que você está numa fornalha. A situação é tão insuportável que você começa a desfalecer. Se você tiver bebido o líquido do tubo de bambu, volte para 25. Se não tiver parado para beber o líquido, vá para 242.''')
 
 	escolha = int(input('Qual a sua escolha?'))
-	if escolha == X:
-		sX()
-	elif escolha == Y:
-		sY()
+	if escolha == 25:
+		s25(jogador)
+	elif escolha == 242:
+		s242(jogador)
 
 def s183(jogador):
 	print('''Você sobe nas pernas-de-pau e dá alguns passos experimentais. Sua confiança aumenta, e logo você se sente capaz de enfrentar a caminhada pelo lodo. A fumaça sobe da base das pernas-de-pau: o lodo começa a corroê-las. Você segue em frente com firmeza e acaba atingindo terreno sólido de novo. Infelizmente, as pernas-de-pau ficam cobertas de lodo, e você é forçado a abandoná-las. Se quiser ir para o oeste, vá para 386. Se preferir continuar para o norte, vá para 218.''')
@@ -1410,21 +1435,19 @@ def s188(jogador):
 def s189(jogador):
 	print('''As pontas da maça do Orca penetram dolorosamente na sua coxa esquerda. Você perde 3 pontos de ENERGIA. Você cambaleia para trás, mas consegue recuperar o equilíbrio a tempo de se defender. Felizmente, o túnel é estreito demais para que ambos os Orcas ataquem-no a um só tempo. Lute com um de cada vez.
 
-	HABILIDADE	ENERGIA
-Primeiro ORCA	5	5
-Segundo ORCA
+				HABILIDADE	ENERGIA
+	Primeiro ORCA	5		   5
+	Segundo ORCA	6		   4
 
-Se você vencer, vá para 257.	6	4''')
-
-	escolha = int(input('Qual a sua escolha?'))
-	if escolha == X:
-		sX()
-	elif escolha == Y:
-		sY()
-
+	Se você vencer, vá para 257.''')
 	iniciarCombate = input('Digite C para começar o combate: ')
 	if iniciarCombate.lower() == 'c':
-		combates.combate_1v1()
+		primeiraOrca = combates.combate_1v1(jogador["sorte"], jogador["habilidade"], jogador["energia"], 5, 6)
+		segundaOrca = combates.combate_1v1(jogador["sorte"], jogador["habilidade"], jogador["energia"], 6, 4)
+		if primeiraOrca == True and segundaOrca == True:
+			s257(jogador)
+		else:
+			print("Game Over, você morreu")
 
 def s190(jogador):
 	print('''Seu corpo vibra desenfreadamente, e você não consegue evitar o desmaio. Você perde 3 pontos de ENERGIA. Se ainda estiver vivo, volte para 50.''')
@@ -1481,10 +1504,17 @@ Se você vencer, vá para 364.''')
 
 def s197(jogador):
 	print('''Graças aos céus, a temperatura agora começa a cair rapidamente, e logo parece quase fresca de novo. No lado esquerdo do túnel, há uma porta fechada e nela, uma pequena placa de ferro que talvez possa ser aberta. Você:
-
-Tentará abrir a porta?	Volte para 171
-Tentará fazer deslizar a placa de ferro?	Volte para 156
-Continuará para o norte, subindo o túnel?	Vá para 326''')
+	Tentará abrir a porta?	Volte para 171
+	Tentará fazer deslizar a placa de ferro?	Volte para 156
+	Continuará para o norte, subindo o túnel?	Vá para 326''')
+	escolha = input("Digite sua escolha: ")
+	match escolha:
+		case 171:
+			s171(jogador)
+		case 156:
+			s156(jogador)
+		case 326:
+			s326(jogador)
 
 def s198(jogador):
 	print('''Quando o gás se dissipa, você caminha de volta para a arca e olha dentro dela. Há uma corrente com pingente jogada no fundo, mas alguém já retirou a pedra que estava incrustada nele. Isso o aborrece tanto que você o atira ao chão e sai furioso do aposento, subindo o túnel. Vá para 230.''')
@@ -1510,6 +1540,11 @@ def s201(jogador):
 
 def s202(jogador):
 	print('''As reações da naja são mais rápidas do que as suas, e a cabeça estufada do animal se projeta para mordê-lo. Teste sua sorte. Se você tiver sorte, volte para 18. Se não tiver sorte, volte para 42.''')
+	testaSorte = sorte.usarSorte(jogador["sorte"])
+	if testaSorte == True:
+		s18(jogador)
+	elif testaSorte == False:
+		s42(jogador)
 
 def s203(jogador):
 	print('''Você se levanta com dificuldade e desembainha a espada. Faz isso bem a tempo, pois a assustadora fera se aproxima velozmente. Esta vai ser uma das lutas mais difíceis de sua vida.
@@ -1665,9 +1700,12 @@ Quando vencer a sua primeira Série de Ataque, Teste sua Sorte. Se você tiver s
 def s226(jogador):
 	print('''A carne contém ervas que lhe aumentarão a força. Some 3 pontos seu índice de ENERGIA. Você pode caminhar até a alcova, se ainda não o fez - volte para 41 - ou sair da câmara e continuar para o oeste - volte para 83.''')
 
-	iniciarCombate = input('Digite C para começar o combate: ')
-	if iniciarCombate.lower() == 'c':
-		combates.combate_1v1()
+	jogador["energia"] + 3
+	escolha = int(input("Digite sua escolha:"))
+	if escolha == 41:
+		s41(jogador)
+	elif escolha == 83:
+		s83(jogador)
 
 def s227(jogador):
 	print('''Ainda sorrindo, o velho olha para você. “Errado”, ele diz em voz baixa. Volte para 85.''')
@@ -1867,7 +1905,19 @@ def s256(jogador):
 
 def s257(jogador):
 	print('''Dentro dos bolsos de um dos Orcas, você acha uma Peça de Ouro e um tubo oco de madeira. Você guarda na mochila o que encontrou e parte para o oeste. Volte para 164.''')
-
+	print("PERSONAGEM ATUAL:")
+	print("Habilidade:", jogador["habilidade"])
+	print("Energia:", jogador["energia"])
+	print("Sorte:", jogador["sorte"])
+	print("Provisões:", jogador["provisoes"])
+	modificador = {
+		"equipamentos": "oco de madeira",
+		"ouro": 1
+	}
+	funcoesFolhaDeAventura.atualizar_inventario(modificador)
+	escolha = input("Digite qualquer tecla para seguir")
+	if escolha:
+		s164(jogador)
 def s258(jogador):
 	print('''Você está exausto e se senta para um descanso na cauda da fera morta. Olhando para baixo, a seus pés, você de repente nota um anel de ferro que se destaca na areia. Se você quiser puxar o anel, volte para 95. Se preferir sair do poço pelas portas duplas, volte para 248.''')
 
@@ -1936,6 +1986,9 @@ def s269(jogador):
 
 def s270(jogador):
 	print('''A tampa da caixa sai facilmente. Dentro, você acha duas Peças de Ouro e um bilhete, escrito num pequeno pedaço de pergaminho, endereçado a você. Depois de colocar o ouro no bolso, você lê a mensagem: Muito bem. Pelo menos você tem o bom senso de parar e tirar proveito da ajuda simbólica que lhe é dada. Agora, posso avisá-lo da necessidade de encontrar e usar diversos itens, se espera sair-se bem no meu Calabouço da Morte. Assinado “Sukumvit.” Guardando de cor o aviso do bilhete, você o rasga em pequenos pedaços e continua para o norte pelo túnel. Volte para 66.''')
+	escolha = input("Digite qualwuer tecla para voltar ao 66")
+	if escolha:
+		s66(jogador)
 
 def s271(jogador):
 	print('''Quando você está prestes a soltar o escudo e atirá-lo por cima do poço, ele escorrega de seus dedos e rola pelo chão. Você não consegue apanhá-lo antes que ele ultrapasse a borda, caindo ruidosamente, de lado, no fundo. A perda do escudo reduz-lhe a capacidade - você perde 1 ponto de HABILIDADE. Amaldiçoando sua própria falta de jeito, você dá um passo à frente, salta por sobre o poço e cai em segurança do outro lado. Você não perde tempo e se dirige para o leste. Volte para 237.''')
@@ -2106,9 +2159,16 @@ def s298(jogador):
 def s299(jogador):
 	print('''A porta abre para uma grande câmara, onde você se choca ao ver que um de seus rivais obviamente encontrou morte súbita ao ser perfurado. É um dos Bárbaros, e ele está empalado em vários espigões de ferro bem longos, presos a uma tábua projetada de dentro do chão. O piso está coberto de lixo e detritos, escondendo um arame no qual ele deve ter pisado, disparando assim o mecanismo da tábua com espigões. Numa alcova na parede do outro lado, você pode ver uma taça de prata sobre uma pequena mesa de madeira. Você:
 
-Irá até o Bárbaro para revistá-lo?	Volte para 126
-Caminhará na direção da alcova?	Volte para 41
-Fechará a porta e continuará para o oeste?	Volte para 83''')
+	Irá até o Bárbaro para revistá-lo?	Volte para 126
+	Caminhará na direção da alcova?	Volte para 41
+	Fechará a porta e continuará para o oeste?	Volte para 83''')
+	escolha = int(input("Digite sua escolha: "))
+	if escolha == 126:
+		s126(jogador)
+	elif escolha == 41:
+		s41(jogador)
+	elif escolha == 83:
+		s83(jogador)
 
 def s300(jogador):
 	print('''Você golpeia o espelho com a espada, com toda sua força, mas isso de nada adianta: o espelho não quebra, e o Demônio do Espelho continua a avançar. Se você quiser tentar partir o espelho de novo, volte para 141. Se, em vez disso, preferir atacar o Demônio do Espelho, vá para 327.''')
@@ -2238,15 +2298,17 @@ def s325(jogador):
 	print('''Você se levanta e segue túnel abaixo. De repente, vê a luz do dia no fim do túnel. Enquanto corre na direção da visão mais bela que teve diante de si desde muito tempo, um céu claro e azul, árvores verdes, você sonha com o alegre cenário de pessoas vibrando. Mas não há recepção de herói da parte das pessoas à sua volta. Estão todas mortas. Você está dentro de uma câmara fria repleta de cadáveres e esqueletos com armaduras. A saída para a vitória era apenas uma ilusão. Somente os despojos de aventureiros do passado são reais. Profundamente deprimido, você caminha de volta para o túnel, mas se choca com uma barreira invisível. Você está aprisionado neste sinistro local, fadado a terminar seus dias na câmara dos mortos.''')
 
 def s326(jogador):
-	print('''Adiante, o túnel faz uma curva fechada para a esquerda. Ao □obra-la, você quase bate de frente em dois ORCAS de aspecto feroz, armados de maças com pontas de ferro e usando armaduras de couro. Você está totalmente despreparado, e, enquanto desembainha a espada, um deles desfere-lhe um golpe de maça. Jogue um dado. Se você obtiver 1 ou 2, volte para
+	print('''Adiante, o túnel faz uma curva fechada para a esquerda. Ao dobra-la, você quase bate de frente em dois ORCAS de aspecto feroz, armados de maças com pontas de ferro e usando armaduras de couro. Você está totalmente despreparado, e, enquanto desembainha a espada, um deles desfere-lhe um golpe de maça. Jogue um dado. Se você obtiver 1 ou 2, volte para
 91. Se obtiver 3 ou 4, volte para 189. Se obtiver 5 ou 6, vá para 380.''')
-
-	escolha = int(input('Qual a sua escolha?'))
-	if escolha == X:
-		sX()
-	elif escolha == Y:
-		sY()
-
+	jogardado = input("digite qualquer tecla para jogar o dado")
+	if jogardado:
+		dado = random.randint(1,6)
+		if dado == 1 or 2:
+			s91(jogador)
+		elif dado == 3 or 4:
+			s189(jogador)
+		elif dado == 5 or 6:
+			s380(jogador)
 def s327(jogador):
 	print('''Exclusivamente voltado para agarrar-lhe o braço, o Demônio do Espelho não tenta defender- se.
 
@@ -2450,7 +2512,7 @@ def s363(jogador):
 		combates.combate_1v1()
 
 def s364(jogador):
-	print('''Enquanto remove o sangue do Mantécora de sua espada, você leva um susto ao ver um homenzinho com um nariz grande saltar detrás de um dos pilares de mármore. Ele veste uma túnica justa, verde, e parece inofensivo, embora você fique desconfiado do modo como ele segura uma bola de vidro opaco com uma luz verde cintilante. “Meus cumprimentos!”, ele diz animadamente. “Meu nome é Igbut, o Gnomo, e sou o Juiz da Prova para seu teste final. Não é preciso dizer que meus poderes mágicos são grandes, por isso você não deve tentar me atacar. Talvez você tenha sabido, durante a sua jornada, que as gemas desempenham um papel essencial na Prova dos Campeões. A porta de ferro à sua frente é a saída para a vitória, mas só há uma maneira de abri-la. É preciso pôr três gemas no mecanismo da fechadura, numa ordem específica. Cada gema irradia uma energia que acionará o mecanismo – se você as colocar corretamente, é claro. Eu o ajudarei de certa forma, mas primeiro precisamos das gemas certas. Você tem uma esmeralda?”. Se você tiver uma esmeralda, volte para 31. Se não tiver, volte para 3.''')
+	print('''Enquanto remove o sangue do Mantécora de sua espada, você leva um susto ao ver um homenzinho com um nariz grande saltar detrás de um dos pilares de mármore. Ele veste uma túnica justa, verde, e parece inofensivo, embora você fique desconfiado do modo como ele segura uma bola de vidro opaco com uma luz verde cintilante. “Meus cumprimentos!”, ele diz animadamente. “Meu nome é Igbut, o Gnomo, e sou o Juiz da Prova para seu teste final. Não é preciso dizer que meus poderes mágicos são grandes, por isso você não deve tentar me atacar. Talvez você tenha sabido, durante a sua jornada, que as gemas desempenham um papel essencial na Prova dos Campeões. A porta de ferro à sua frente é a saída para a vitória, mas só há uma maneira de abri-la. É preciso pôr três gemas no mecanismo da fechadura, numa ordem específica. Cada gema irradia uma energia que acionará o mecanismo  se você as colocar corretamente, é claro. Eu o ajudarei de certa forma, mas primeiro precisamos das gemas certas. Você tem uma esmeralda?”. Se você tiver uma esmeralda, volte para 31. Se não tiver, volte para 3.''')
 
 def s365(jogador):
 	print('''Você diz a Throm que matar o Anão não vai adiantar nada, pois vocês jamais acharão a saída da câmara sozinhos. Você argumenta que talvez surja uma chance de enganar o Anão mais tarde, quando tiverem descoberto a saída da câmara, por isso você pretende ir adiante com o teste do Anão. Você diz ao Anão que está pronto, e ele acena para que o siga. Throm deve aguardar a volta dele. Uma porta secreta abre-se na parede da câmara, e você segue o Anão até um pequeno aposento circular. Ele fecha a porta atrás de você e lhe entrega dois dados de osso, mandando que os jogue no chão. Você tira um seis e um dois: total, oito. O Anão pede que você os jogue mais uma vez, mas, agora, deve adivinhar se o total será igual, menor ou maior que oito. Se seu palpite for que será igual, volte para 290. Se achar que será menor que oito, volte para 191. Se optar por maior que oito, volte para 84.''')
@@ -2486,6 +2548,9 @@ def s372(jogador):
 
 def s373(jogador):
 	print('''Você sobe pelo rochedo macio, temendo ser absorvido por ele a qualquer momento. É difícil passar por cima da coisa, pois seus membros afundam na casca mole, mas, por fim, você consegue chegar ao outro lado. Aliviado por estar de novo em terreno firme, você se dirige para o leste. Volte para 13.''')
+	escolha = input("Digite qualquer tecla para voltar ao 13:")
+	if escolha:
+		s13(jogador)
 
 def s374(jogador):
 	print('''Você caminha pela caverna, mas não acha nada interessante. Throm o chama lá de trás, dizendo que encontrou um saco de couro sob uma pilha de rochas. Abrindo o saco, Throm ri alto quando um minúsculo camundongo corre entre os dedos dele e foge para uma fresta entre dois rochedos. A súbitas, você ouve o som de rocha rachando: estalactites se desprendem do teto, como resultado da vibração causada pelo riso retumbante de Throm, que ainda ecoa pela caverna. Você berra para que Throm fuja pela passagem em arco, enquanto as estalactites desabam. Teste sua Sorte. Se você tiver sorte, volte para 118. Se não tiver sorte, volte para 295.''')
@@ -2520,7 +2585,12 @@ Se você vencer, volte para 257.''')
 
 	iniciarCombate = input('Digite C para começar o combate: ')
 	if iniciarCombate.lower() == 'c':
-		combates.combate_1v1()
+		primeiraOrca = combates.combate_1v1(jogador["sorte"], jogador["habilidade"], jogador["energia"], 5, 6)
+		segundaOrca = combates.combate_1v1(jogador["sorte"], jogador["habilidade"], jogador["energia"], 6, 4)
+		if primeiraOrca == True and segundaOrca == True:
+			s257(jogador)
+		else:
+			print("Game Over, você morreu")
 
 def s381(jogador):
 	print('''Você olha em volta no aposento e nada vê de interesse, exceto a alcova na parede do oeste e uma cadeira de pedra no meio do aposento, na qual se encontra sentado o esqueleto de um guerreiro armado, possivelmente um concorrente de anos atrás. Os dedos descamados da mão direita estão fechados em torno de um pedaço de pergaminho. Se você quiser pegar o pergaminho do esqueleto, volte para 331. Se preferir caminhar até a alcova, volte para 128.''')
